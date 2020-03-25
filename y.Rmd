@@ -33,8 +33,19 @@ my_age <- 我的年紀
 
 
 ```{r}
-library(googlesheets4)
-`出席狀況表單網址` <- 'https://docs.google.com/spreadsheets/d/1oB-5hj1pO5g8FMpZbA7RgIG8NvCRx6WvLPwvleCEV4Q/edit#gid=987577191' # 缺乏定義值
-ss <- as_sheets_id(`出席狀況表單網址`)
-homework_sheet <- sheets_read(ss,sheet=1)
+studentId <- c(410773002, 410773015)
+class(studentId)
+as.character(studentId) -> studentId
+```
+2020-03-04T08:15:28Z 2020-03-11 16:11:43 2020-03-11 16:11:43
+```{r}
+studentTime=c(
+ymd_hms("2020-03-04T08:15:28Z"),
+ymd_hms("2020-03-11 16:11:43",tz="Asia/Taipei"),
+ymd_hms("2020-03-11 16:11:43",tz="Asia/Taipei"))
+studentTime
+
+
+
+
 ```
