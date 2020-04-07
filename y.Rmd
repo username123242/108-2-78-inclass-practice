@@ -49,3 +49,34 @@ studentTime
 
 
 ```
+
+
+
+```{r}
+`天氣預報`=list(
+`台北市`=list(
+'cityname'="台北市",
+date=list(
+today="2020-03-31",
+tomorrow="2020-04-01"
+),
+temperature=list(
+highest=25,
+lowest=18
+)
+),
+'新北市'=list(
+"cityname"="新北市",
+date=list(
+today="2020-03-31", 
+tomorrow = "2020-04-01"
+),
+temperature=list(
+highest=24,
+lowest=15
+)
+
+)
+)
+print(`天氣預報`)
+```
