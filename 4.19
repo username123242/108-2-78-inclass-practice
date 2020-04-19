@@ -1,0 +1,128 @@
+---
+title: "4/19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+```{r}
+today <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",c(highest_temp = 25),c(lowest_temp = 18)),
+  list("新北市",c(highest_temp = 24),c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+
+today[[2]][[2]]
+```
+
+```{r}
+library(lubridate)
+list1 <- 
+  list(
+    list(
+      name="Jack",
+      birthday=ymd("1998-03-21"),
+      status=c(height=177, weight=80)
+    )
+  )
+
+
+str(list1)
+```
+```{r}
+list1[[1]]$birthday=ymd("1997-03-21")
+list1[[2]]=list(
+    name="Mary",
+    birthday=ymd("1998-08-24")
+  )
+
+str(list1)
+```
+
+```{r}
+list1[[2]]$status=c(height=163,weight=45)
+list1[[1]]$status[[1]]=176
+str(list1)
+```
+
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+# 有多少位置可選：
+length(listExample)
+```
+
+```{r}
+str(listExample)
+
+listExample$學期[["108-1"]][[2]]=list(name='產業經濟學')
+listExample$學期[["108-1"]][[2]][c("teacher","grade")]=list("Wen",88)
+```
+
+```{r}
+library(jsonlite)
+fromJSON("https://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?$format=json", simplifyDataFrame = F) -> newTaipeiYouBike
+str(newTaipeiYouBike[[600]])
+```
+
+
+
+```{r}
+newTaipeiYouBike[[600]][[1]]='1600'
+newTaipeiYouBike[[600]][c(2,3)]=NULL
+
+str(newTaipeiYouBike[[600]])
+
+
+```
+
+```{r}
+source("https://www.dropbox.com/s/cqg0h2i5sfxsh1f/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
