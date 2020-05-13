@@ -1,0 +1,58 @@
+---
+title: '5.12'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓'
+  )
+strip1<-strip2<-strip3<-"[0-9]"
+strip4<-"號"
+myRegexSlotMachine<-paste0(strip1,strip2,strip3,strip4)
+str_extract(addresses,myRegexSlotMachine)
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+myRegexSlotMachine<-"[0-9]+號"
+str_extract(addresses,myRegexSlotMachine)
+str_view_all(addresses,myRegexSlotMachine)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+twDate <-  c("民國108年12月5日","民國98年10月5日")
+regex_pattern<-"(?<=民國)[0-9]+(?=年)"
+year<-str_extract(twDate,regex_pattern)
+westernYear<-as.integer(year)+1911
+twDate11<-str_replace(twDate,regex_pattern,as.character(westernYear))
+lubridate::ymd(twDate11)
+```
