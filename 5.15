@@ -1,0 +1,80 @@
+---
+title: "5/14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+jsonlite::fromJSON(
+  "https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"
+) -> population
+unlist(population) -> population
+```
+
+```{r}
+
+jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json") -> covid19
+print(population)
+class(population)
+names(population)
+levels(covid19$縣市)->newlevels
+population<-population[newlevels]
+print(population)
+sort(population,decreasing = T)->population
+population
+
+
+covid19$縣市<-factor(
+  covid19$縣市,names(population)
+)
+covid19$縣市
+levels(covid19$縣市)
+```
+
+
+
+```{r}
+print(covid19$年齡層)
+levels(covid19$年齡層)->ok
+str_extract(ok,"^[0-9]+")->value
+class(value)
+as.integer(value)->value
+ok
+class(value)
+names(value)<-ok
+sort(value)->value
+print(value)
+covid19$年齡層<-factor(
+  covid19$年齡層,names(value)
+)
+levels(covid19$年齡層)
+
+
+```
+```{r}
+table(covid19$縣市)
+
+```
